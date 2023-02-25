@@ -34,9 +34,12 @@ def image_edit(
         prompt=prompt, 
         image=init_image, 
         strength=0.75, 
-        guidance_scale=7.5, 
-        mask_image=mask, 
+        guidance_scale=7.5,
         num_images_per_prompt=n
     ).images
 
     return images
+
+if __name__ == "__main__":
+    for image in image_edit("data/dog.jpeg", "a dog wearing a hat"):
+        image.show()

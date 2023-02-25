@@ -6,7 +6,7 @@
 
 This is a set of APIs that essentially wrap Huggingface's [transformers](https://github.com/huggingface/transformers) and [diffusers](https://github.com/huggingface/diffusers) libraries to mimic some APIs from some companies.
 
-It is not to say that monetization, proprietary models or private datasets are bad, but rather to show that it is possible to do the same thing with open source tools with transparency and more control over your decisions.
+It is not to say that monetization, proprietary models or private datasets are bad, but rather to show that it is possible to do the same thing with open source tools with transparency and more control over your decisions you can make, if you care about that.
 
 ## How to use it?
 
@@ -16,7 +16,7 @@ But if you want to contribute to it to make it better, here are some tasks it ca
 
 ### Text Classification
 
-```
+```python
 from closedapi.tasks import classify
 classify("EleutherAI/gpt-neo-1.3B", [
     "how are you",
@@ -31,7 +31,7 @@ classify("EleutherAI/gpt-neo-1.3B", [
 
 ### Text Generation or Completion
 
-```
+```python
 from closedapi.tasks import completion
 completion("gpt2", "Hello world")
 # [{'generated_text': ' that\'s what you want from your life, not my life."\n\nAs'}]
@@ -39,7 +39,7 @@ completion("gpt2", "Hello world")
 
 ### Text Embedding
 
-```
+```python
 from closedapi.tasks import embed
 results = detect_language("papluca/xlm-roberta-base-language-detection", ["Hello world!", "Bonjour le monde!"])
 results[0]["label"]
@@ -50,17 +50,27 @@ results[1]["label"]
 
 ### Language Detection
 
-```
+```python
 from closedapi.tasks import detect_language
 detect_language("Hello world!")
 # 'en'
 ```
 
 ### Image Generation
-```
+
+```python
 from closedapi.tasks import image_generate
 
 for image in image_generate("a dog", n=3):
+    image.show()
+```
+
+### Image Edit
+
+```python
+from closedapi.tasks import image_edit
+
+for image in image_edit("dog.jpeg", "a dog wearing a hat", n=1):
     image.show()
 ```
 
